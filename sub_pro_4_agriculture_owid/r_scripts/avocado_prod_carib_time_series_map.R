@@ -18,18 +18,18 @@ library(scales)
 
 # 1) Load the required datasets and data cleaning
 
-avocado_prod <- read.csv("sub_pro_7_agriculture_owid/datasets/avocado-production-tonnes.csv")
+avocado_prod <- read.csv("sub_pro_4_agriculture_owid/datasets/avocado-production-tonnes.csv")
 
 # Clean the datasets
 
 avocado_prod_clean <- avocado_prod %>%
   clean_names() 
 
-# Only include African Countries
+# Only include Caribbean Countries
 
 caribbean_countries <- c(
   "Antigua and Barbuda",
-  "The Bahamas",
+  "Bahamas",
   "Barbados",
   "Belize",
   "Cuba",
@@ -53,21 +53,6 @@ avocado_prod_clean_carib <- avocado_prod_clean |>
   filter(country %in% caribbean_countries) |>
   rename(avocado_production = "avocados_00000572_production_005510_tonnes")
 
-# To combine the datasets with mapping dataset - change some of the country names to match
-
-# Change to standard names used in rnaturalearth for maps
-
-# avocado_prod_clean_africa_rnaturalearth <- avocado_prod_clean_africa %>%
-#   mutate(country = case_when(
-#     country == "Cape Verde"  ~ "Cabo Verde",
-#     country == "Sao Tome and Principe"  ~ "São Tomé and Principe",
-#     country == "Eswatini"  ~ "eSwatini",
-#     country == "Democratic Republic of Congo"  ~ "Democratic Republic of the Congo",
-#     country == "Tanzania"  ~ "United Republic of Tanzania",
-#     country == "Congo"  ~ "Republic of the Congo",
-#     TRUE ~ country  # Retain original name if none of the conditions are met
-#   )) 
-
 ################################################################################
 # QC to check for missing countries!
 ################################################################################
@@ -78,7 +63,7 @@ unique(avocado_prod_clean_carib$country)
 # Countries that don't have data
 setdiff(caribbean_countries, unique(avocado_prod_clean_carib$country))
 
-# Check whether any countries in the dataset are not in the list of African countries
+# Check whether any countries in the dataset are not in the list of Caribbean countries
 setdiff(unique(avocado_prod_clean_carib$country), caribbean_countries)
 
 ## Then check the original dataset manually to see if countries are actually missing 
@@ -115,7 +100,7 @@ bottom_3 <- avocado_prod_clean_carib |>
 # Fetch high-resolution country data
 world <- ne_countries(scale = "large", returnclass = "sf")
 
-# Filter African countries, including Seychelles and Mauritius
+# Filter Caribbean countries, including Seychelles and Mauritius
 carib <- world %>%
   filter(admin %in% caribbean_countries)
 
@@ -125,24 +110,24 @@ avocado_prod_clean_carib_1965 <- avocado_prod_clean_carib |>
   filter(year == 1965) |>
   arrange(desc(avocado_production))
 
-# Now we have the 1965 dataset and the africa dataset.
+# Now we have the 1965 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
 avocado_prod_clean_carib_1965_full_join <- full_join(carib, 
                                                       avocado_prod_clean_carib_1965,
                                                       by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
 avocado_prod_clean_carib_1965_anti_join_1 <- anti_join(carib, 
                                                         avocado_prod_clean_carib_1965, 
                                                         by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_1965
+# Find rows only in avocado_prod_clean_carib_1965
 
 avocado_prod_clean_carib_1965_anti_join_2 <- anti_join(avocado_prod_clean_carib_1965, 
                                                         carib, 
@@ -157,7 +142,7 @@ p1 <- ggplot(data = carib) +
   geom_sf(data = avocado_prod_clean_carib_1965_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 1100000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -188,43 +173,43 @@ ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_cari
 
 # Get 1970 data
 
-avocado_prod_clean_africa_1970 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_1970 <- avocado_prod_clean_carib |> 
   filter(year == 1970) |>
   arrange(desc(avocado_production))
 
-# Now we have the 1970 dataset and the africa dataset.
+# Now we have the 1970 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_1970_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_1970,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_1970_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_1970,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_1970_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_1970, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_1970_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_1970, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_1970
+# Find rows only in avocado_prod_clean_carib_1970
 
-avocado_prod_clean_africa_1970_anti_join_2 <- anti_join(avocado_prod_clean_africa_1970, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_1970_anti_join_2 <- anti_join(avocado_prod_clean_carib_1970, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p2 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_1970_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_1970_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -249,49 +234,49 @@ p2 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_1970.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_1970.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 1975 data
 
-avocado_prod_clean_africa_1975 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_1975 <- avocado_prod_clean_carib |> 
   filter(year == 1975) |>
   arrange(desc(avocado_production))
 
-# Now we have the 1975 dataset and the africa dataset.
+# Now we have the 1975 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_1975_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_1975,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_1975_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_1975,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_1975_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_1975, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_1975_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_1975, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_1975
+# Find rows only in avocado_prod_clean_carib_1975
 
-avocado_prod_clean_africa_1975_anti_join_2 <- anti_join(avocado_prod_clean_africa_1975, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_1975_anti_join_2 <- anti_join(avocado_prod_clean_carib_1975, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p3 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_1975_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_1975_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -316,49 +301,49 @@ p3 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_1975.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_1975.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 1980 data
 
-avocado_prod_clean_africa_1980 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_1980 <- avocado_prod_clean_carib |> 
   filter(year == 1980) |>
   arrange(desc(avocado_production))
 
-# Now we have the 1980 dataset and the africa dataset.
+# Now we have the 1980 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_1980_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_1980,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_1980_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_1980,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_1980_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_1980, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_1980_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_1980, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_1980
+# Find rows only in avocado_prod_clean_carib_1980
 
-avocado_prod_clean_africa_1980_anti_join_2 <- anti_join(avocado_prod_clean_africa_1980, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_1980_anti_join_2 <- anti_join(avocado_prod_clean_carib_1980, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p4 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_1980_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_1980_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -383,49 +368,49 @@ p4 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_1980.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_1980.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 1985 data
 
-avocado_prod_clean_africa_1985 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_1985 <- avocado_prod_clean_carib |> 
   filter(year == 1985) |>
   arrange(desc(avocado_production))
 
-# Now we have the 1985 dataset and the africa dataset.
+# Now we have the 1985 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_1985_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_1985,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_1985_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_1985,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_1985_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_1985, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_1985_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_1985, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_1985
+# Find rows only in avocado_prod_clean_carib_1985
 
-avocado_prod_clean_africa_1985_anti_join_2 <- anti_join(avocado_prod_clean_africa_1985, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_1985_anti_join_2 <- anti_join(avocado_prod_clean_carib_1985, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p5 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_1985_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_1985_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -450,49 +435,49 @@ p5 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_1985.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_1985.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 1990 data
 
-avocado_prod_clean_africa_1990 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_1990 <- avocado_prod_clean_carib |> 
   filter(year == 1990) |>
   arrange(desc(avocado_production))
 
-# Now we have the 1990 dataset and the africa dataset.
+# Now we have the 1990 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_1990_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_1990,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_1990_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_1990,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_1990_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_1990, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_1990_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_1990, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_1990
+# Find rows only in avocado_prod_clean_carib_1990
 
-avocado_prod_clean_africa_1990_anti_join_2 <- anti_join(avocado_prod_clean_africa_1990, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_1990_anti_join_2 <- anti_join(avocado_prod_clean_carib_1990, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p6 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_1990_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_1990_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -517,49 +502,49 @@ p6 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_1990.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_1990.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 1995 data
 
-avocado_prod_clean_africa_1995 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_1995 <- avocado_prod_clean_carib |> 
   filter(year == 1995) |>
   arrange(desc(avocado_production))
 
-# Now we have the 1995 dataset and the africa dataset.
+# Now we have the 1995 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_1995_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_1995,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_1995_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_1995,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_1995_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_1995, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_1995_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_1995, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_1995
+# Find rows only in avocado_prod_clean_carib_1995
 
-avocado_prod_clean_africa_1995_anti_join_2 <- anti_join(avocado_prod_clean_africa_1995, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_1995_anti_join_2 <- anti_join(avocado_prod_clean_carib_1995, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p7 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_1995_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_1995_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -584,49 +569,49 @@ p7 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_1995.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_1995.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 2000 data
 
-avocado_prod_clean_africa_2000 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_2000 <- avocado_prod_clean_carib |> 
   filter(year == 2000) |>
   arrange(desc(avocado_production))
 
-# Now we have the 2000 dataset and the africa dataset.
+# Now we have the 2000 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_2000_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_2000,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_2000_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_2000,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_2000_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_2000, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_2000_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_2000, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_2000
+# Find rows only in avocado_prod_clean_carib_2000
 
-avocado_prod_clean_africa_2000_anti_join_2 <- anti_join(avocado_prod_clean_africa_2000, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_2000_anti_join_2 <- anti_join(avocado_prod_clean_carib_2000, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p8 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_2000_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_2000_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -651,49 +636,49 @@ p8 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_2000.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_2000.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 2005 data
 
-avocado_prod_clean_africa_2005 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_2005 <- avocado_prod_clean_carib |> 
   filter(year == 2005) |>
   arrange(desc(avocado_production))
 
-# Now we have the 2005 dataset and the africa dataset.
+# Now we have the 2005 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_2005_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_2005,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_2005_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_2005,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_2005_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_2005, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_2005_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_2005, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_2005
+# Find rows only in avocado_prod_clean_carib_2005
 
-avocado_prod_clean_africa_2005_anti_join_2 <- anti_join(avocado_prod_clean_africa_2005, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_2005_anti_join_2 <- anti_join(avocado_prod_clean_carib_2005, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p9 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_2005_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_2005_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -718,49 +703,48 @@ p9 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_2005.png", width = 9, height = 16, dpi = 300)
-
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_2005.png", width = 9, height = 16, dpi = 300)
 
 
 # Get 2010 data
 
-avocado_prod_clean_africa_2010 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_2010 <- avocado_prod_clean_carib |> 
   filter(year == 2010) |>
   arrange(desc(avocado_production))
 
-# Now we have the 2010 dataset and the africa dataset.
+# Now we have the 2010 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_2010_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_2010,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_2010_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_2010,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_2010_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_2010, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_2010_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_2010, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_2010
+# Find rows only in avocado_prod_clean_carib_2010
 
-avocado_prod_clean_africa_2010_anti_join_2 <- anti_join(avocado_prod_clean_africa_2010, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_2010_anti_join_2 <- anti_join(avocado_prod_clean_carib_2010, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p10 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_2010_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_2010_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -785,49 +769,49 @@ p10 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_2010.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_2010.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 2015 data
 
-avocado_prod_clean_africa_2015 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_2015 <- avocado_prod_clean_carib |> 
   filter(year == 2015) |>
   arrange(desc(avocado_production))
 
-# Now we have the 2015 dataset and the africa dataset.
+# Now we have the 2015 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_2015_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_2015,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_2015_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_2015,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_2015_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_2015, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_2015_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_2015, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_2015
+# Find rows only in avocado_prod_clean_carib_2015
 
-avocado_prod_clean_africa_2015_anti_join_2 <- anti_join(avocado_prod_clean_africa_2015, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_2015_anti_join_2 <- anti_join(avocado_prod_clean_carib_2015, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p11 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_2015_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_2015_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -852,49 +836,49 @@ p11 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_2015.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_2015.png", width = 9, height = 16, dpi = 300)
 
 
 
 # Get 2020 data
 
-avocado_prod_clean_africa_2020 <- avocado_prod_clean_africa_rnaturalearth |> 
+avocado_prod_clean_carib_2020 <- avocado_prod_clean_carib |> 
   filter(year == 2020) |>
   arrange(desc(avocado_production))
 
-# Now we have the 2020 dataset and the africa dataset.
+# Now we have the 2020 dataset and the caribbean dataset.
 # These two need to be joined together.
 
 # Identify rows that don't match
 
-# Left join to keep all rows from africa
+# Left join to keep all rows from caribbean
 
-avocado_prod_clean_africa_2020_full_join <- full_join(africa, 
-                                                      avocado_prod_clean_africa_2020,
-                                                      by = c("admin" = "country"))
+avocado_prod_clean_carib_2020_full_join <- full_join(carib, 
+                                                     avocado_prod_clean_carib_2020,
+                                                     by = c("admin" = "country"))
 
-# Find rows only in africa
+# Find rows only in caribbean
 
-avocado_prod_clean_africa_2020_anti_join_1 <- anti_join(africa, 
-                                                        avocado_prod_clean_africa_2020, 
-                                                        by = c("admin" = "country"))
+avocado_prod_clean_carib_2020_anti_join_1 <- anti_join(carib, 
+                                                       avocado_prod_clean_carib_2020, 
+                                                       by = c("admin" = "country"))
 
-# Find rows only in global_avocado_clean_africa_2020
+# Find rows only in avocado_prod_clean_carib_2020
 
-avocado_prod_clean_africa_2020_anti_join_2 <- anti_join(avocado_prod_clean_africa_2020, 
-                                                        africa, 
-                                                        by = c("country" = "admin"))
+avocado_prod_clean_carib_2020_anti_join_2 <- anti_join(avocado_prod_clean_carib_2020, 
+                                                       carib, 
+                                                       by = c("country" = "admin"))
 
 ###############
 # As you plot the different years, remember that not all years had all countries measured
 ###############
 
-p12 <- ggplot(data = africa) +
+p1 <- ggplot(data = carib) +
   geom_sf() + 
-  geom_sf(data = avocado_prod_clean_africa_2020_full_join, aes(fill = avocado_production), linewidth = 1) +
+  geom_sf(data = avocado_prod_clean_carib_2020_full_join, aes(fill = avocado_production), linewidth = 1) +
   scale_fill_distiller(palette = "YlGnBu", 
                        direction = 1,
-                       limits = c(0, 350000),
+                       limits = c(0, 650000),
                        labels  = label_number(scale = 1e-6),
                        name = "Millions of Tonnes",
                        guide = guide_colorbar(     # Adjustments specific to continuous scales
@@ -919,4 +903,6 @@ p12 <- ggplot(data = africa) +
        subtitle = "",
        caption = "") 
 
-ggsave("sub_pro_7_agriculture_owid/images/avocado_time_series/avocado_clean_africa_map_2020.png", width = 9, height = 16, dpi = 300)
+ggsave("sub_pro_4_agriculture_owid/images/avocado_time_series/avocado_clean_carib_map_2020.png", width = 9, height = 16, dpi = 300)
+
+

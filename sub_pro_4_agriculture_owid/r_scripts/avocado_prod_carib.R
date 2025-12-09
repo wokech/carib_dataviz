@@ -51,26 +51,46 @@ avocado_prod_clean <- avocado_prod_clean |>
 
 # Filter by region
 
-avocado_prod_clean_country <- avocado_prod_clean |>
+# Only include Caribbean Countries
+
+caribbean_countries <- c(
+  "Antigua and Barbuda",
+  "Bahamas",
+  "Barbados",
+  "Belize",
+  "Cuba",
+  "Dominica",
+  "Dominican Republic",
+  "Grenada",
+  "Guyana",
+  "Haiti",
+  "Jamaica",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Suriname",
+  "Trinidad and Tobago"
+)
+
+avocado_prod_clean_carib <- avocado_prod_clean |>
   select(c(1,3,4)) |>
-  filter(country %in% c(
-    "Antigua and Barbuda",
-    "The Bahamas",
-    "Barbados",
-    "Belize",
-    "Cuba",
-    "Dominica",
-    "Dominican Republic",
-    "Grenada",
-    "Guyana",
-    "Haiti",
-    "Jamaica",
-    "Saint Kitts and Nevis",
-    "Saint Lucia",
-    "Saint Vincent and the Grenadines",
-    "Suriname",
-    "Trinidad and Tobago"
-  ))
+  filter(country %in% caribbean_countries)
+
+################################################################################
+# QC to check for missing countries!
+################################################################################
+
+# Countries that have data
+unique(avocado_prod_clean_carib$country)
+
+# Countries that don't have data
+setdiff(caribbean_countries, unique(avocado_prod_clean_carib$country))
+
+# Check whether any countries in the dataset are not in the list of Caribbean countries
+setdiff(unique(avocado_prod_clean_carib$country), caribbean_countries)
+
+## Then check the original dataset manually to see if countries are actually missing 
+######################################################################################
 
 # Plot the stack area chart
 
@@ -78,7 +98,7 @@ carib_avocado_2023_plot <- avocado_prod_clean_country |>
   filter(year == "2023") |>
   ggplot(aes(x = reorder(country, avocado_production_tonnes), y = avocado_production_tonnes)) +
   geom_col(width = 0.95,
-           fill = "black")+ 
+           fill = "turquoise")+ 
   coord_flip() + 
   geom_text(aes(x = country, y = avocado_production_tonnes+125000, label = comma(avocado_production_tonnes)),
             color = "black",
@@ -99,12 +119,10 @@ carib_avocado_2023_plot <- avocado_prod_clean_country |>
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text(family = "URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
-        plot.background = element_rect(fill = "azure2", color = "azure2"),
-        panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "")
 
 carib_avocado_2023_plot
 
-ggsave("sub_pro_4_agriculture_owid/images/carib_avocado_2023_plot.png",
+ggsave("sub_pro_4_agriculture_owid/images/regional_food_barplots/carib_avocado_2023_plot.png",
        width = 12, height = 12, dpi = 300)
 
