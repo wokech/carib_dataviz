@@ -67,25 +67,25 @@ ggplot(data = caribbean) +
   geom_sf(fill = "goldenrod2", linewidth = 0.5) +
   theme_void()
 
-# # Capital Cities
-# 
-# # Read in the data
-# capital_cities <- read_excel("sub_pro_0_tutorials_tools/single_countries/datasets/africa_countries_capitals.xlsx")
-# # trim whitespaces and clean the names
-# capital_cities_split <- capital_cities |>
-#   mutate(across(everything(), ~trimws(.))) |>
-#   clean_names()
-# # transform to sf data
-# capital_cities_sf <- st_as_sf(capital_cities_split, coords = c("longitude", "latitude"), crs = 4326)
-# # transform to match the shapefile CRS
-# capital_cities_sf <- st_transform(capital_cities_sf, st_crs(africa))
+# Capital Cities
+
+# Read in the data
+capital_cities <- read_excel("sub_pro_1_carib_data/datasets/carib_capital_cities.xlsx")
+# trim whitespaces and clean the names
+capital_cities_split <- capital_cities |>
+  mutate(across(everything(), ~trimws(.))) |>
+  clean_names()
+# transform to sf data
+capital_cities_sf <- st_as_sf(capital_cities_split, coords = c("longitude", "latitude"), crs = 4326)
+# transform to match the shapefile CRS
+capital_cities_sf <- st_transform(capital_cities_sf, st_crs(caribbean))
 
 
 # 1) Antigua and Barbuda
 
 antigua_barbuda <- c("Antigua and Barbuda")
 antigua_barbuda_df <- caribbean |> filter(admin == "Antigua and Barbuda")
-#capital_cities_antigua_barbuda_sf <- capital_cities_sf |> filter(country %in% antigua_barbuda)
+capital_cities_antigua_barbuda_sf <- capital_cities_sf |> filter(country %in% antigua_barbuda)
 
 map_antigua_barbuda <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -105,11 +105,11 @@ map_antigua_barbuda <- ggplot(data = caribbean)+
 map_antigua_barbuda
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/antigua_barbuda_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/antigua_barbuda_map.png", width = 12, height = 12, dpi = 300)
 
 map_antigua_barbuda_zoom <- ggplot(data = antigua_barbuda_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
-  #geom_sf(data = capital_cities_antigua_barbuda_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_antigua_barbuda_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -125,14 +125,14 @@ map_antigua_barbuda_zoom <- ggplot(data = antigua_barbuda_df)+
 map_antigua_barbuda_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/antigua_barbuda_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/antigua_barbuda_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 # 2) The Bahamas
 
 bahamas <- c("The Bahamas")
 bahamas_df <- caribbean |> filter(admin == "The Bahamas")
-#capital_cities_bahamas_sf <- capital_cities_sf |> filter(country %in% bahamas)
+capital_cities_bahamas_sf <- capital_cities_sf |> filter(country %in% bahamas)
 
 map_bahamas <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -152,11 +152,11 @@ map_bahamas <- ggplot(data = caribbean)+
 map_bahamas
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/bahamas_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/bahamas_map.png", width = 12, height = 12, dpi = 300)
 
 map_bahamas_zoom <- ggplot(data = bahamas_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_bahamas_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_bahamas_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -172,14 +172,14 @@ map_bahamas_zoom <- ggplot(data = bahamas_df)+
 map_bahamas_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/bahamas_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/bahamas_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 # 3) Barbados
 
 barbados <- c("Barbados")
 barbados_df <- caribbean |> filter(admin == "Barbados")
-#capital_cities_barbados_sf <- capital_cities_sf |> filter(country %in% barbados)
+capital_cities_barbados_sf <- capital_cities_sf |> filter(country %in% barbados)
 
 map_barbados <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -199,11 +199,11 @@ map_barbados <- ggplot(data = caribbean)+
 map_barbados
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/barbados_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/barbados_map.png", width = 12, height = 12, dpi = 300)
 
 map_barbados_zoom <- ggplot(data = barbados_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_barbados_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_barbados_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -219,7 +219,7 @@ map_barbados_zoom <- ggplot(data = barbados_df)+
 map_barbados_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/barbados_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/barbados_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -227,7 +227,7 @@ map_barbados_zoom
 
 belize <- c("Belize")
 belize_df <- caribbean |> filter(admin == "Belize")
-#capital_cities_belize_sf <- capital_cities_sf |> filter(country %in% belize)
+capital_cities_belize_sf <- capital_cities_sf |> filter(country %in% belize)
 
 map_belize <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -247,11 +247,11 @@ map_belize <- ggplot(data = caribbean)+
 map_belize
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/belize_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/belize_map.png", width = 12, height = 12, dpi = 300)
 
 map_belize_zoom <- ggplot(data = belize_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_belize_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_belize_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -267,7 +267,7 @@ map_belize_zoom <- ggplot(data = belize_df)+
 map_belize_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/belize_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/belize_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -275,7 +275,7 @@ map_belize_zoom
 
 cuba <- c("Cuba")
 cuba_df <- caribbean |> filter(admin == "Cuba")
-#capital_cities_cuba_sf <- capital_cities_sf |> filter(country %in% cuba)
+capital_cities_cuba_sf <- capital_cities_sf |> filter(country %in% cuba)
 
 map_cuba <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -295,11 +295,11 @@ map_cuba <- ggplot(data = caribbean)+
 map_cuba
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/cuba_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/cuba_map.png", width = 12, height = 12, dpi = 300)
 
 map_cuba_zoom <- ggplot(data = cuba_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_cuba_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_cuba_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -315,7 +315,7 @@ map_cuba_zoom <- ggplot(data = cuba_df)+
 map_cuba_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/cuba_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/cuba_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -323,7 +323,7 @@ map_cuba_zoom
 
 dominica <- c("Dominica")
 dominica_df <- caribbean |> filter(admin == "Dominica")
-#capital_cities_dominica_sf <- capital_cities_sf |> filter(country %in% dominica)
+capital_cities_dominica_sf <- capital_cities_sf |> filter(country %in% dominica)
 
 map_dominica <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -343,11 +343,11 @@ map_dominica <- ggplot(data = caribbean)+
 map_dominica
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/dominica_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/dominica_map.png", width = 12, height = 12, dpi = 300)
 
 map_dominica_zoom <- ggplot(data = dominica_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_dominica_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_dominica_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -363,7 +363,7 @@ map_dominica_zoom <- ggplot(data = dominica_df)+
 map_dominica_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/dominica_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/dominica_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -371,7 +371,7 @@ map_dominica_zoom
 
 dominican_republic <- c("Dominican Republic")
 dominican_republic_df <- caribbean |> filter(admin == "Dominican Republic")
-#capital_cities_dominican_republic_sf <- capital_cities_sf |> filter(country %in% dominican_republic)
+capital_cities_dominican_republic_sf <- capital_cities_sf |> filter(country %in% dominican_republic)
 
 map_dominican_republic <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -391,11 +391,11 @@ map_dominican_republic <- ggplot(data = caribbean)+
 map_dominican_republic
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/dominican_republic_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/dominican_republic_map.png", width = 12, height = 12, dpi = 300)
 
 map_dominican_republic_zoom <- ggplot(data = dominican_republic_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_dominican_republic_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_dominican_republic_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -411,7 +411,7 @@ map_dominican_republic_zoom <- ggplot(data = dominican_republic_df)+
 map_dominican_republic_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/dominican_republic_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/dominican_republic_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -419,7 +419,7 @@ map_dominican_republic_zoom
 
 grenada <- c("Grenada")
 grenada_df <- caribbean |> filter(admin == "Grenada")
-#capital_cities_grenada_sf <- capital_cities_sf |> filter(country %in% grenada)
+capital_cities_grenada_sf <- capital_cities_sf |> filter(country %in% grenada)
 
 map_grenada <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -439,11 +439,11 @@ map_grenada <- ggplot(data = caribbean)+
 map_grenada
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/grenada_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/grenada_map.png", width = 12, height = 12, dpi = 300)
 
 map_grenada_zoom <- ggplot(data = grenada_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_grenada_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_grenada_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -459,7 +459,7 @@ map_grenada_zoom <- ggplot(data = grenada_df)+
 map_grenada_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/grenada_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/grenada_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -467,7 +467,7 @@ map_grenada_zoom
 
 guyana <- c("Guyana")
 guyana_df <- caribbean |> filter(admin == "Guyana")
-#capital_cities_guyana_sf <- capital_cities_sf |> filter(country %in% guyana)
+capital_cities_guyana_sf <- capital_cities_sf |> filter(country %in% guyana)
 
 map_guyana <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -487,11 +487,11 @@ map_guyana <- ggplot(data = caribbean)+
 map_guyana
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/guyana_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/guyana_map.png", width = 12, height = 12, dpi = 300)
 
 map_guyana_zoom <- ggplot(data = guyana_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_guyana_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_guyana_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -507,7 +507,7 @@ map_guyana_zoom <- ggplot(data = guyana_df)+
 map_guyana_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/guyana_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/guyana_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -515,7 +515,7 @@ map_guyana_zoom
 
 haiti <- c("Haiti")
 haiti_df <- caribbean |> filter(admin == "Haiti")
-#capital_cities_haiti_sf <- capital_cities_sf |> filter(country %in% haiti)
+capital_cities_haiti_sf <- capital_cities_sf |> filter(country %in% haiti)
 
 map_haiti <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -535,11 +535,11 @@ map_haiti <- ggplot(data = caribbean)+
 map_haiti
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/haiti_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/haiti_map.png", width = 12, height = 12, dpi = 300)
 
 map_haiti_zoom <- ggplot(data = haiti_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_haiti_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_haiti_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -555,7 +555,7 @@ map_haiti_zoom <- ggplot(data = haiti_df)+
 map_haiti_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/haiti_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/haiti_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -563,7 +563,7 @@ map_haiti_zoom
 
 jamaica <- c("Jamaica")
 jamaica_df <- caribbean |> filter(admin == "Jamaica")
-#capital_cities_jamaica_sf <- capital_cities_sf |> filter(country %in% jamaica)
+capital_cities_jamaica_sf <- capital_cities_sf |> filter(country %in% jamaica)
 
 map_jamaica <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -583,11 +583,11 @@ map_jamaica <- ggplot(data = caribbean)+
 map_jamaica
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/jamaica_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/jamaica_map.png", width = 12, height = 12, dpi = 300)
 
 map_jamaica_zoom <- ggplot(data = jamaica_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_jamaica_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_jamaica_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -603,7 +603,7 @@ map_jamaica_zoom <- ggplot(data = jamaica_df)+
 map_jamaica_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/jamaica_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/jamaica_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -611,7 +611,7 @@ map_jamaica_zoom
 
 saint_lucia <- c("Saint Lucia")
 saint_lucia_df <- caribbean |> filter(admin == "Saint Lucia")
-#capital_cities_saint_lucia_sf <- capital_cities_sf |> filter(country %in% saint_lucia)
+capital_cities_saint_lucia_sf <- capital_cities_sf |> filter(country %in% saint_lucia)
 
 map_saint_lucia <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -631,11 +631,11 @@ map_saint_lucia <- ggplot(data = caribbean)+
 map_saint_lucia
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/saint_lucia_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/saint_lucia_map.png", width = 12, height = 12, dpi = 300)
 
 map_saint_lucia_zoom <- ggplot(data = saint_lucia_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_saint_lucia_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_saint_lucia_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -651,7 +651,7 @@ map_saint_lucia_zoom <- ggplot(data = saint_lucia_df)+
 map_saint_lucia_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/saint_lucia_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/saint_lucia_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -659,7 +659,7 @@ map_saint_lucia_zoom
 
 saint_kitts_and_nevis <- c("Saint Kitts and Nevis")
 saint_kitts_and_nevis_df <- caribbean |> filter(admin == "Saint Kitts and Nevis")
-#capital_cities_saint_kitts_and_nevis_sf <- capital_cities_sf |> filter(country %in% saint_kitts_and_nevis)
+capital_cities_saint_kitts_and_nevis_sf <- capital_cities_sf |> filter(country %in% saint_kitts_and_nevis)
 
 map_saint_kitts_and_nevis <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -679,11 +679,11 @@ map_saint_kitts_and_nevis <- ggplot(data = caribbean)+
 map_saint_kitts_and_nevis
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/saint_kitts_and_nevis_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/saint_kitts_and_nevis_map.png", width = 12, height = 12, dpi = 300)
 
 map_saint_kitts_and_nevis_zoom <- ggplot(data = saint_kitts_and_nevis_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_saint_kitts_and_nevis_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_saint_kitts_and_nevis_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -699,7 +699,7 @@ map_saint_kitts_and_nevis_zoom <- ggplot(data = saint_kitts_and_nevis_df)+
 map_saint_kitts_and_nevis_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/saint_kitts_and_nevis_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/saint_kitts_and_nevis_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -707,7 +707,7 @@ map_saint_kitts_and_nevis_zoom
 
 saint_vincent_and_the_grenadines <- c("Saint Vincent and the Grenadines")
 saint_vincent_and_the_grenadines_df <- caribbean |> filter(admin == "Saint Vincent and the Grenadines")
-#capital_cities_saint_vincent_and_the_grenadines_sf <- capital_cities_sf |> filter(country %in% saint_vincent_and_the_grenadines)
+capital_cities_saint_vincent_and_the_grenadines_sf <- capital_cities_sf |> filter(country %in% saint_vincent_and_the_grenadines)
 
 map_saint_vincent_and_the_grenadines <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -727,11 +727,11 @@ map_saint_vincent_and_the_grenadines <- ggplot(data = caribbean)+
 map_saint_vincent_and_the_grenadines
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/saint_vincent_and_the_grenadines_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/saint_vincent_and_the_grenadines_map.png", width = 12, height = 12, dpi = 300)
 
-map_saint_vincent_and_the_grenadines_zoom <- ggplot(data = saint_vincent_and_the_grenadines_df)+
-  geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_saint_vincent_and_the_grenadines_sf, color = "#6488EA", size = 4) +
+map_saint_vincent_and_the_grenadines_zoom <- ggplot(data = saint_vincent_and_the_grenadines_df) +
+  geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black") +
+  geom_sf(data = capital_cities_saint_vincent_and_the_grenadines_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -747,7 +747,7 @@ map_saint_vincent_and_the_grenadines_zoom <- ggplot(data = saint_vincent_and_the
 map_saint_vincent_and_the_grenadines_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/saint_vincent_and_the_grenadines_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/saint_vincent_and_the_grenadines_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -755,7 +755,7 @@ map_saint_vincent_and_the_grenadines_zoom
 
 suriname <- c("Suriname")
 suriname_df <- caribbean |> filter(admin == "Suriname")
-#capital_cities_suriname_sf <- capital_cities_sf |> filter(country %in% suriname)
+capital_cities_suriname_sf <- capital_cities_sf |> filter(country %in% suriname)
 
 map_suriname <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -775,11 +775,11 @@ map_suriname <- ggplot(data = caribbean)+
 map_suriname
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/suriname_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/suriname_map.png", width = 12, height = 12, dpi = 300)
 
 map_suriname_zoom <- ggplot(data = suriname_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_suriname_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_suriname_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -795,7 +795,7 @@ map_suriname_zoom <- ggplot(data = suriname_df)+
 map_suriname_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/suriname_map_zoom.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/suriname_map_zoom.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -804,7 +804,7 @@ map_suriname_zoom
 
 trinidad_and_tobago <- c("Trinidad and Tobago")
 trinidad_and_tobago_df <- caribbean |> filter(admin == "Trinidad and Tobago")
-#capital_cities_trinidad_and_tobago_sf <- capital_cities_sf |> filter(country %in% trinidad_and_tobago)
+capital_cities_trinidad_and_tobago_sf <- capital_cities_sf |> filter(country %in% trinidad_and_tobago)
 
 map_trinidad_and_tobago <- ggplot(data = caribbean)+
   geom_sf(aes(fill = admin), linewidth = 0.25, color = "black")+
@@ -824,11 +824,11 @@ map_trinidad_and_tobago <- ggplot(data = caribbean)+
 map_trinidad_and_tobago
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/trinidad_and_tobago_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/single_country/trinidad_and_tobago_map.png", width = 12, height = 12, dpi = 300)
 
 map_trinidad_and_tobago_zoom <- ggplot(data = trinidad_and_tobago_df)+
   geom_sf(aes(fill = admin), linewidth = 0.25, fill = "salmon1", color = "black")+
-  #geom_sf(data = capital_cities_trinidad_and_tobago_sf, color = "#6488EA", size = 4) +
+  geom_sf(data = capital_cities_trinidad_and_tobago_sf, color = "purple", size = 6, shape = 18) +
   scale_fill_manual(values = "salmon1") +
   theme_void()+
   labs(title = "",
@@ -844,127 +844,4 @@ map_trinidad_and_tobago_zoom <- ggplot(data = trinidad_and_tobago_df)+
 map_trinidad_and_tobago_zoom
 
 # Save the plot
-#ggsave("sub_pro_0_tutorials_tools/single_countries/images/trinidad_and_tobago_map_zoom.png", width = 12, height = 12, dpi = 300)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ggsave("sub_pro_1_carib_data/images/single_country/trinidad_and_tobago_map_zoom.png", width = 12, height = 12, dpi = 300)

@@ -15,6 +15,7 @@ library(rnaturalearthdata)
 library(patchwork)
 library(ggrepel)
 library(scales)
+library(ggsci)
 
 # Map of the Cultural Caribbean
 
@@ -42,33 +43,40 @@ caribbean_cultural <- ne_countries(scale = "medium", returnclass = "sf") |>
 
 # Plot the map
 
+# Labeled
+
 p1 <- ggplot(data = caribbean_cultural) +
-  geom_sf(fill = "lightblue", color = "white") +
-  # geom_text_repel(
-  #   data = caribbean_cultural,
-  #   aes(label = admin, geometry = geometry),
-  #   stat = "sf_coordinates",
-  #   size = 8,
-  #   min.segment.length = 4
-  # ) +  
+  geom_sf(aes(fill = admin), linewidth = 0.5) +
+  scale_fill_d3(palette = 'category20') +
+  geom_text_repel(
+    data = caribbean_cultural,
+    aes(label = admin, geometry = geometry),
+    stat = "sf_coordinates",
+    size = 6,
+    min.segment.length = 0
+  ) +
   theme_void() +
   theme(
     plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
     panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
-    plot.title.position = "plot",
-    plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
-    plot.caption = element_text(family = "Helvetica",size = 24, hjust = 0, vjust = 1),
-    legend.title = element_text(size = 30),
-    legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
-    legend.position = "bottom",
-    legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(3, 'cm'), #change legend key width
-  ) +
-  labs(title = "",
-       subtitle = "",
-       caption = "") 
+    legend.position = "none")
 
 p1
 
-ggsave("carib_cultural_map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_1_carib_data/images/total_carib/carib_cultural_map_labeled.png", width = 12, height = 12, dpi = 300)
+
+
+# Unlabeled
+
+p2 <- ggplot(data = caribbean_cultural) +
+  geom_sf(aes(fill = admin), linewidth = 0.5) +
+  scale_fill_d3(palette = 'category20') +
+  theme_void() +
+  theme(
+    plot.background = element_blank(),
+    panel.background = element_blank(),
+    legend.position = "none")
+
+p2
+
+ggsave("sub_pro_1_carib_data/images/total_carib/carib_cultural_map_unlabeled.png", width = 12, height = 12, dpi = 300)
