@@ -7,18 +7,12 @@ The visualizations have been created using various tools and software, and they 
 
 ### 1) Cultural Caribbean Map
 
-[Code]()
+[Code](sub_pro_1_carib_data/r_scripts/cultural_caribbean_map.R)
 
-![]()
+![](sub_pro_1_carib_data/images/total_carib/carib_cultural_map_labeled.png)
 
 ### 2) Relative Wealth Index in the Dominican Republic
 
-[Code]()
+[Code](sub_pro_2_rel_wealth_index_carib_meta/r_scripts/relative_wealth_index_caribbean.R)
 
-![]()
-
-### 1) 
-
-[Code]()
-
-![]()
+![](sub_pro_2_rel_wealth_index_carib_meta/images/dominican_republic.png)
