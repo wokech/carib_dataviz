@@ -38,7 +38,7 @@ ggplot() +
   geom_text_repel(data = major_towns_belize, aes(x = longitude, y = latitude, label = name), 
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_belize, aes(x = longitude, y = latitude), 
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -50,8 +50,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24),
         legend.key.size = unit(1, "cm"),
@@ -90,7 +90,7 @@ ggplot() +
   geom_text_repel(data = major_towns_dominica, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_dominica, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -102,8 +102,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24.5),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -141,7 +141,7 @@ ggplot() +
   geom_text_repel(data = major_towns_dominican_republic, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_dominican_republic, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -153,8 +153,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -192,7 +192,7 @@ ggplot() +
   geom_text_repel(data = major_towns_grenada, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_grenada, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -204,8 +204,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -243,7 +243,7 @@ ggplot() +
   geom_text_repel(data = major_towns_guyana, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_guyana, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -255,8 +255,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -294,7 +294,7 @@ ggplot() +
   geom_text_repel(data = major_towns_haiti, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_haiti, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -306,8 +306,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -345,7 +345,7 @@ ggplot() +
   geom_text_repel(data = major_towns_jamaica, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_jamaica, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -357,8 +357,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -396,7 +396,7 @@ ggplot() +
   geom_text_repel(data = major_towns_saint_lucia, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_saint_lucia, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -408,8 +408,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -447,7 +447,7 @@ ggplot() +
   geom_text_repel(data = major_towns_saint_vincent_grenadines, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_saint_vincent_grenadines, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -459,8 +459,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +
@@ -498,7 +498,7 @@ ggplot() +
   geom_text_repel(data = major_towns_suriname, aes(x = longitude, y = latitude, label = name),
                   color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
   geom_point(data = major_towns_suriname, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 16, alpha = 0.5) +
+             color = "black", size = 5, shape = 13, alpha = 0.75) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -510,8 +510,8 @@ ggplot() +
         plot.title.position = 'plot',
         plot.caption = element_text(family = "Helvetica",size = 24),
         plot.caption.position = 'plot',
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.title = element_text(family="Helvetica", size = 24),
         legend.text = element_text(size = 24), 
         legend.position = "bottom") +

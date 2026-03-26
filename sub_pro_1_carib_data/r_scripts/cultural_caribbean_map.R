@@ -57,8 +57,8 @@ p1 <- ggplot(data = caribbean_cultural) +
   ) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     legend.position = "none")
 
 p1

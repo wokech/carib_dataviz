@@ -98,7 +98,7 @@ carib_cassava_2023_plot <- cassava_prod_clean_carib |>
   filter(year == "2023") |>
   ggplot(aes(x = reorder(country, cassava_production_tonnes), y = cassava_production_tonnes)) +
   geom_col(width = 0.95,
-           fill = "turquoise")+ 
+           fill = "#006D5B")+ 
   coord_flip() + 
   geom_text(aes(x = country, y = cassava_production_tonnes+125000, label = comma(cassava_production_tonnes)),
             color = "black",
@@ -119,6 +119,8 @@ carib_cassava_2023_plot <- cassava_prod_clean_carib |>
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text(family = "URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.position = "")
 
 carib_cassava_2023_plot

@@ -99,14 +99,14 @@ carib_potato_2023_plot <- potato_prod_clean_carib |>
   filter(potato_production_tonnes > 0.0) |>
   ggplot(aes(x = reorder(country, potato_production_tonnes), y = potato_production_tonnes)) +
   geom_col(width = 0.95,
-           fill = "turquoise")+ 
+           fill = "#006D5B")+ 
   coord_flip() + 
   geom_text(aes(x = country, y = potato_production_tonnes+12500, label = comma(potato_production_tonnes)),
             color = "black",
             fontface = "bold",
             size = 8) +
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.1))) +
+                     expand = expansion(mult = c(0, 0.2))) +
   theme_classic() +
   labs(x = "", 
        y = "Potato Production\n(tonnes)", 
@@ -120,6 +120,8 @@ carib_potato_2023_plot <- potato_prod_clean_carib |>
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text(family = "URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.position = "")
 
 carib_potato_2023_plot

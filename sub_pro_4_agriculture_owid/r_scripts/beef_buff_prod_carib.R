@@ -98,14 +98,14 @@ carib_beef_buff_2023_plot <- beef_buff_prod_clean_carib |>
   filter(year == "2023") |>
   ggplot(aes(x = reorder(country, beef_buff_production_tonnes), y = beef_buff_production_tonnes)) +
   geom_col(width = 0.95,
-           fill = "turquoise")+ 
+           fill = "#006D5B")+ 
   coord_flip() + 
   geom_text(aes(x = country, y = beef_buff_production_tonnes+12500, label = comma(beef_buff_production_tonnes)),
             color = "black",
             fontface = "bold",
             size = 8) +
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.1))) +
+                     expand = expansion(mult = c(0, 0.25))) +
   theme_classic() +
   labs(x = "", 
        y = "Beef and Buffalo Meat Production\n(tonnes)", 
@@ -119,6 +119,8 @@ carib_beef_buff_2023_plot <- beef_buff_prod_clean_carib |>
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text(family = "URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.position = "")
 
 carib_beef_buff_2023_plot

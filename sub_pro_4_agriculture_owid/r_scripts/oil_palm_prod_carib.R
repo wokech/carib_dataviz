@@ -98,14 +98,15 @@ carib_oil_palm_2022_plot <- oil_palm_prod_clean_carib |>
   filter(year == "2022") |>
   ggplot(aes(x = reorder(country, oil_palm_production_tonnes), y = oil_palm_production_tonnes)) +
   geom_col(width = 0.95,
-           fill = "turquoise")+ 
+           fill = "#006D5B")+ 
   coord_flip() + 
   geom_text(aes(x = country, y = oil_palm_production_tonnes+5000, label = comma(oil_palm_production_tonnes)),
             color = "black",
             fontface = "bold",
             size = 8) +
-  scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.1))) +
+  scale_y_continuous(labels = comma,
+                     breaks = seq(0, 50000, by = 25000),
+                     expand = expansion(mult = c(0, 0.2))) +
   theme_classic() +
   labs(x = "", 
        y = "Oil Palm Production\n(tonnes)", 
@@ -119,6 +120,8 @@ carib_oil_palm_2022_plot <- oil_palm_prod_clean_carib |>
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text(family = "URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.position = "")
 
 carib_oil_palm_2022_plot

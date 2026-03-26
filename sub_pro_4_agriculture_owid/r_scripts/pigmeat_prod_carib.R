@@ -98,14 +98,15 @@ carib_pigmeat_2023_plot <- pigmeat_prod_clean_carib |>
   filter(year == "2023") |>
   ggplot(aes(x = reorder(country, pigmeat_production_tonnes), y = pigmeat_production_tonnes)) +
   geom_col(width = 0.95,
-           fill = "turquoise")+ 
+           fill = "#006D5B")+ 
   coord_flip() + 
   geom_text(aes(x = country, y = pigmeat_production_tonnes+50000, label = comma(pigmeat_production_tonnes)),
             color = "black",
             fontface = "bold",
             size = 8) +
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.1))) +
+                     breaks = seq(0, 250000, by = 125000),
+                     expand = expansion(mult = c(0, 0.2))) +
   theme_classic() +
   labs(x = "", 
        y = "Pig Meat Production\n(tonnes)", 
@@ -119,6 +120,8 @@ carib_pigmeat_2023_plot <- pigmeat_prod_clean_carib |>
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text(family = "URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+        panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
         legend.position = "")
 
 carib_pigmeat_2023_plot

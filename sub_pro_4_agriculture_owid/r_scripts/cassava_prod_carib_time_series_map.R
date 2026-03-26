@@ -1,4 +1,4 @@
-# Caribbean Avocado Production Time Series
+# Caribbean cassava Production Time Series
 
 # Load the required libraries and packages
 
@@ -15,6 +15,15 @@ library(rnaturalearthdata)
 library(patchwork)
 library(ggrepel)
 library(scales)
+
+##############
+# Also ensure that rnatural hi res is installed
+install.packages("devtools")
+pak::pkg_install("ropensci/rnaturalearthhires")
+#library("rnaturalearth")
+#remotes::install_github("ropensci/rnaturalearthhires")
+#############
+
 
 # 1) Load the required datasets and data cleaning
 
@@ -151,8 +160,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -218,8 +227,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -285,8 +294,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -352,8 +361,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -419,8 +428,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -486,8 +495,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -553,8 +562,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -620,8 +629,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -687,8 +696,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -753,8 +762,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -820,8 +829,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -887,8 +896,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),

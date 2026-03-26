@@ -16,6 +16,15 @@ library(patchwork)
 library(ggrepel)
 library(scales)
 
+##############
+# Also ensure that rnatural hi res is installed
+install.packages("devtools")
+pak::pkg_install("ropensci/rnaturalearthhires")
+#library("rnaturalearth")
+#remotes::install_github("ropensci/rnaturalearthhires")
+#############
+
+
 # 1) Load the required datasets and data cleaning
 
 beef_buff_prod <- read.csv("sub_pro_4_agriculture_owid/datasets/beef-and-buffalo-meat-production-tonnes.csv")
@@ -151,8 +160,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -161,7 +170,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "1965",
        subtitle = "",
@@ -218,8 +227,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -228,7 +237,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "1970",
        subtitle = "",
@@ -285,8 +294,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -295,7 +304,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "1975",
        subtitle = "",
@@ -352,8 +361,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -362,7 +371,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "1980",
        subtitle = "",
@@ -419,8 +428,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -429,7 +438,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "1985",
        subtitle = "",
@@ -486,8 +495,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -496,7 +505,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "1990",
        subtitle = "",
@@ -553,8 +562,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -563,7 +572,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "1995",
        subtitle = "",
@@ -620,8 +629,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -630,7 +639,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "2000",
        subtitle = "",
@@ -687,8 +696,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -697,7 +706,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "2005",
        subtitle = "",
@@ -753,8 +762,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -763,7 +772,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "2010",
        subtitle = "",
@@ -820,8 +829,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -830,7 +839,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "2015",
        subtitle = "",
@@ -887,8 +896,8 @@ p1 <- ggplot(data = carib) +
                        )) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-    panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+    plot.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
+    panel.background = element_rect(fill = "#F2F2F2", colour = "#F2F2F2"),
     plot.title = element_text(family="Helvetica", face="bold", size = 150, hjust = 0.5),
     plot.title.position = "plot",
     plot.subtitle = element_text(family="Helvetica", face="bold", size = 26, hjust = 0.5),
@@ -897,7 +906,7 @@ p1 <- ggplot(data = carib) +
     legend.text = element_text(size = 30, vjust = 0.5, hjust = 0.75),
     legend.position = "bottom",
     legend.key.height = unit(2, 'cm'), #change legend key height,
-    legend.key.width = unit(2, 'cm'), #change legend key width
+    legend.key.width = unit(3, 'cm'), #change legend key width
   ) +
   labs(title = "2020",
        subtitle = "",
