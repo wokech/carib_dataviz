@@ -1,4 +1,6 @@
-# Share of Women in Parliament
+# Forests (OWID) - Static
+
+# Forest cover as a share of total land area within the country or region.
 
 # A) Load the required libraries and set up data
 
@@ -17,13 +19,7 @@ library(gghighlight)
 
 # Load data
 
-# share_women_parliament <- read_csv("https://ourworldindata.org/grapher/share-of-women-in-parliament.csv?v=1&csvType=full&useColumnShortNames=true")
-
-# Save data
-#write_csv(share_women_parliament, "sub_pro_7_politics/datasets/share_women_parliament.csv")
-
-# Load data
-share_women_parliament <- read_csv("sub_pro_7_politics/datasets/share_women_parliament.csv")
+forest_share_land_area <- read_csv("https://ourworldindata.org/grapher/forest-area-as-share-of-land-area.csv?v=1&csvType=full&useColumnShortNames=true")
 
 # Clean the data
 
@@ -33,17 +29,16 @@ select_countries <- c("Antigua and Barbuda", "Bahamas", "Barbados", "Belize",
                       "Saint Lucia", "Saint Vincent and the Grenadines",
                       "Suriname", "Trinidad and Tobago")
 
-share_women_parliament_select <- share_women_parliament %>%
+forest_share_land_area_select <- forest_share_land_area %>%
   clean_names() %>%
-  filter(entity %in% select_countries)
-  
+  filter(entity %in% select_countries) 
 
 # B) EDA and Basic Plot
 
-share_women_parliament_select |> 
-  filter(year == 2020) |>
-  arrange(desc(wom_parl_vdem_estimate_best)) |>
-  ggplot(aes(x=reorder(entity, wom_parl_vdem_estimate_best), y = wom_parl_vdem_estimate_best, fill = entity)) + 
+forest_share_land_area_select |> 
+  filter(year == 2025) |>
+  arrange(desc(forest_share)) |>
+  ggplot(aes(x=reorder(entity, forest_share), y = forest_share, fill = entity)) + 
   geom_bar(stat = "identity") +
   coord_flip() +
   scale_color_brewer(palette = "Set3") +
@@ -52,13 +47,13 @@ share_women_parliament_select |>
   geom_text(aes(y = 0.02, label = entity),
             hjust = 0,
             vjust = 0.5,
-            size = 10,
+            size = 7.5,
             color = "black",
             show.legend = FALSE) +
-  geom_hline(yintercept = 33.3, linetype = "dashed") +
-  annotate("text", x=5, y=32, label="One-Third Share", size = 7.5, angle=90) +
+  geom_hline(yintercept = 90, linetype = "dashed") +
+  annotate("text", x=7.5, y=89, label="Forest cover  = 90%", size = 7.5, angle=90) +
   labs(x = "Country",
-       y = "Share of women in parliament (%, 2020)",
+       y = "Share of land covered by forest (%, 2025)",
        title = "",
        subtitle = "",
        caption = "") +
@@ -76,5 +71,4 @@ share_women_parliament_select |>
         legend.title = element_blank(),
         legend.position = "none") 
 
-ggsave("sub_pro_7_politics/images/share_women_parliament_2020.png", width = 12, height = 12, dpi = 300)
-
+ggsave("sub_pro_5_forest_cover_owid/images/forest_share_africa_top_5.png", width = 12, height = 12, dpi = 300)
