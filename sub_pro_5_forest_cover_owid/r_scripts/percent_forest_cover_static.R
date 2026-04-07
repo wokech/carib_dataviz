@@ -18,8 +18,14 @@ library(scales)
 library(gghighlight)
 
 # Load data
-
 forest_share_land_area <- read_csv("https://ourworldindata.org/grapher/forest-area-as-share-of-land-area.csv?v=1&csvType=full&useColumnShortNames=true")
+
+# Save data
+# write_csv(forest_share_land_area, "sub_pro_5_forest_cover_owid/datasets/forest_share_land_area.csv")
+
+# Load data again
+# forest_share_land_area <- read_csv("sub_pro_5_forest_cover_owid/datasets/forest_share_land_area.csv")
+
 
 # Clean the data
 
