@@ -36,9 +36,9 @@ ggplot() +
   geom_sf(data = belize, fill = NA, color = "black", linewidth = 1) + # Add Belize borders
   geom_point(data = blz_data, aes(x = longitude, y = latitude, color = rwi), size = 0.75, alpha = 0.8) +
   geom_text_repel(data = major_towns_belize, aes(x = longitude, y = latitude, label = name), 
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_belize, aes(x = longitude, y = latitude), 
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -88,9 +88,9 @@ ggplot() +
   geom_sf(data = dominica, fill = NA, color = "black", linewidth = 1) + # Add Dominica borders
   geom_point(data = dma_data, aes(x = longitude, y = latitude, color = rwi), size = 0.75, alpha = 0.8) +
   geom_text_repel(data = major_towns_dominica, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_dominica, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -139,9 +139,9 @@ ggplot() +
   geom_sf(data = dominican_republic, fill = NA, color = "black", linewidth = 1) + # Add Dominican Republic borders
   geom_point(data = dom_rep_data, aes(x = longitude, y = latitude, color = rwi), size = 0.5, alpha = 0.8) +
   geom_text_repel(data = major_towns_dominican_republic, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_dominican_republic, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -190,9 +190,9 @@ ggplot() +
   geom_sf(data = grenada, fill = NA, color = "black", linewidth = 1) + # Add Grenada borders
   geom_point(data = grd_data, aes(x = longitude, y = latitude, color = rwi), size = 0.75, alpha = 0.8) +
   geom_text_repel(data = major_towns_grenada, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_grenada, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -241,9 +241,9 @@ ggplot() +
   geom_sf(data = guyana, fill = NA, color = "black", linewidth = 1) + # Add Guyana borders
   geom_point(data = guy_data, aes(x = longitude, y = latitude, color = rwi), size = 0.5, alpha = 0.8) +
   geom_text_repel(data = major_towns_guyana, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_guyana, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -292,9 +292,9 @@ ggplot() +
   geom_sf(data = haiti, fill = NA, color = "black", linewidth = 1) + # Add Haiti borders
   geom_point(data = hti_data, aes(x = longitude, y = latitude, color = rwi), size = 0.5, alpha = 0.8) +
   geom_text_repel(data = major_towns_haiti, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_haiti, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -343,9 +343,9 @@ ggplot() +
   geom_sf(data = jamaica, fill = NA, color = "black", linewidth = 1) + # Add Jamaica borders
   geom_point(data = jam_data, aes(x = longitude, y = latitude, color = rwi), size = 0.5, alpha = 0.8) +
   geom_text_repel(data = major_towns_jamaica, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_jamaica, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -394,9 +394,9 @@ ggplot() +
   geom_sf(data = saint_lucia, fill = NA, color = "black", linewidth = 1) + # Add Saint Lucia borders
   geom_point(data = st_lca_data, aes(x = longitude, y = latitude, color = rwi), size = 0.5, alpha = 0.8) +
   geom_text_repel(data = major_towns_saint_lucia, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_saint_lucia, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -445,9 +445,9 @@ ggplot() +
   geom_sf(data = saint_vincent_grenadines, fill = NA, color = "black", linewidth = 1) + # Add St. Vincent and the Grenadines borders
   geom_point(data = st_vct_gre_data, aes(x = longitude, y = latitude, color = rwi), size = 0.5, alpha = 0.8) +
   geom_text_repel(data = major_towns_saint_vincent_grenadines, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_saint_vincent_grenadines, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
@@ -496,9 +496,9 @@ ggplot() +
   geom_sf(data = suriname, fill = NA, color = "black", linewidth = 1) + # Add Suriname borders
   geom_point(data = sur_data, aes(x = longitude, y = latitude, color = rwi), size = 0.5, alpha = 0.8) +
   geom_text_repel(data = major_towns_suriname, aes(x = longitude, y = latitude, label = name),
-                  color = "black", check_overlap = TRUE, size = 6, vjust = 1.5) +
+                  color = "black", check_overlap = TRUE, size = 9, vjust = 1.5) +
   geom_point(data = major_towns_suriname, aes(x = longitude, y = latitude),
-             color = "black", size = 5, shape = 13, alpha = 0.75) +
+             color = "black", size = 6, shape = 13) +
   scale_color_viridis(option = "plasma") +
   theme_void() +
   labs(title = "",
